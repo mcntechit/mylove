@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Will You Marry Me?</title>
+<title>Anandi, Will You Marry Me? 💍❤️</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -12,41 +12,91 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fbc2eb 100%);
     font-family: 'Georgia', serif;
     overflow: hidden;
     position: relative;
     padding: 20px;
   }
 
-  /* Floating hearts background */
+  /* ===== FLOATING LOVE SYMBOLS ===== */
   .heart {
     position: absolute;
-    bottom: -50px;
-    color: #ff4d6d;
-    font-size: 20px;
+    bottom: -60px;
     animation: floatUp linear infinite;
-    opacity: 0.7;
+    opacity: 0.85;
     z-index: 1;
+    user-select: none;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(255, 77, 109, 0.6));
   }
 
   @keyframes floatUp {
-    0%   { transform: translateY(0) scale(1); opacity: 0.8; }
-    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    0%   { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+    10%  { opacity: 0.9; }
+    90%  { opacity: 0.9; }
+    100% { transform: translateY(-115vh) rotate(360deg) scale(1.4); opacity: 0; }
   }
 
+  /* Floating "Anandi" names */
+  .name-float {
+    position: absolute;
+    bottom: -60px;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-weight: bold;
+    color: #d6336c;
+    text-shadow: 0 0 12px rgba(255, 77, 109, 0.7);
+    animation: floatUp linear infinite;
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* ===== SPARKLE STARS ===== */
+  .sparkle {
+    position: absolute;
+    animation: twinkle 2s ease-in-out infinite;
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.6); }
+    50%      { opacity: 1;   transform: scale(1.3); }
+  }
+
+  /* ===== MAIN CARD ===== */
   .card {
     position: relative;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.92);
-    border-radius: 25px;
-    padding: 40px 30px;
-    max-width: 480px;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 30px;
+    padding: 45px 30px;
+    max-width: 500px;
     width: 100%;
     text-align: center;
-    box-shadow: 0 20px 50px rgba(255, 77, 109, 0.35);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 25px 60px rgba(255, 77, 109, 0.45),
+                0 0 0 3px rgba(255, 182, 193, 0.5);
+    backdrop-filter: blur(12px);
     animation: cardIn 1.2s ease-out;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ff4d6d, #ff9a9e, #ffd6e0, #ff4d6d);
+    background-size: 300% 300%;
+    z-index: -1;
+    animation: borderGlow 4s ease infinite;
+  }
+
+  @keyframes borderGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
   }
 
   @keyframes cardIn {
@@ -54,20 +104,30 @@
     to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
+  /* ===== PHOTO ===== */
+  .photo-wrap {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    margin: 0 auto 30px;
+  }
+
   .photo-frame {
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 25px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     padding: 6px;
-    background: linear-gradient(135deg, #ff4d6d, #ff9a9e, #ffd6e0);
-    box-shadow: 0 0 30px rgba(255, 77, 109, 0.6);
-    animation: pulse 2.5s ease-in-out infinite;
+    background: linear-gradient(135deg, #ff4d6d, #ff9a9e, #ffd6e0, #ff4d6d);
+    background-size: 300% 300%;
+    box-shadow: 0 0 40px rgba(255, 77, 109, 0.7);
+    animation: pulse 2.5s ease-in-out infinite, borderGlow 4s ease infinite;
+    position: relative;
+    z-index: 2;
   }
 
   @keyframes pulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 77, 109, 0.6); }
-    50%      { transform: scale(1.04); box-shadow: 0 0 45px rgba(255, 77, 109, 0.9); }
+    0%, 100% { transform: scale(1);    box-shadow: 0 0 30px rgba(255, 77, 109, 0.6); }
+    50%      { transform: scale(1.05); box-shadow: 0 0 55px rgba(255, 77, 109, 1); }
   }
 
   .photo-frame img {
@@ -78,34 +138,100 @@
     display: block;
   }
 
+  /* Orbiting hearts */
+  .orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 280px;
+    height: 280px;
+    margin: -140px 0 0 -140px;
+    animation: spin 12s linear infinite;
+    pointer-events: none;
+  }
+  .orbit span {
+    position: absolute;
+    font-size: 24px;
+    animation: spin 12s linear infinite reverse;
+    filter: drop-shadow(0 0 8px rgba(255, 77, 109, 0.8));
+  }
+  .orbit span:nth-child(1) { top: -8px;   left: 50%; margin-left: -12px; }
+  .orbit span:nth-child(2) { top: 50%;    right: -8px; margin-top: -12px; }
+  .orbit span:nth-child(3) { bottom: -8px; left: 50%; margin-left: -12px; }
+  .orbit span:nth-child(4) { top: 50%;    left: -8px;  margin-top: -12px; }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ===== TEXT ===== */
   h1 {
     font-size: 2rem;
     color: #d6336c;
     margin-bottom: 15px;
     font-style: italic;
+    text-shadow: 0 2px 10px rgba(255, 77, 109, 0.3);
+  }
+
+  /* Anandi's name — special styling */
+  .her-name {
+    background: linear-gradient(135deg, #ff4d6d, #d6336c, #ff4d6d);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 1.3em;
+    animation: nameGlow 3s ease infinite;
+  }
+
+  @keyframes nameGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
   }
 
   .message {
     font-size: 1.05rem;
     color: #495057;
-    line-height: 1.7;
-    margin-bottom: 30px;
+    line-height: 1.8;
+    margin-bottom: 25px;
     font-family: 'Segoe UI', sans-serif;
   }
 
   .question {
-    font-size: 1.9rem;
+    font-size: 2rem;
     color: #ff4d6d;
     font-weight: bold;
     margin-bottom: 30px;
     animation: glow 2s ease-in-out infinite alternate;
+    letter-spacing: 1px;
   }
 
   @keyframes glow {
     from { text-shadow: 0 0 10px rgba(255, 77, 109, 0.5); }
-    to   { text-shadow: 0 0 25px rgba(255, 77, 109, 1), 0 0 40px rgba(255, 77, 109, 0.6); }
+    to   { text-shadow: 0 0 25px rgba(255, 77, 109, 1), 0 0 45px rgba(255, 77, 109, 0.7); }
   }
 
+  /* Decorative divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0 25px;
+    font-size: 1.3rem;
+    color: #ff4d6d;
+    letter-spacing: 5px;
+  }
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #ff9a9e, transparent);
+  }
+
+  /* ===== BUTTONS ===== */
   .buttons {
     display: flex;
     gap: 20px;
@@ -114,7 +240,7 @@
   }
 
   button {
-    padding: 14px 38px;
+    padding: 15px 40px;
     font-size: 1.15rem;
     border: none;
     border-radius: 50px;
@@ -127,30 +253,45 @@
   .yes-btn {
     background: linear-gradient(135deg, #ff4d6d, #d6336c);
     color: white;
-    box-shadow: 0 8px 20px rgba(214, 51, 108, 0.5);
+    box-shadow: 0 8px 25px rgba(214, 51, 108, 0.6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .yes-btn::after {
+    content: '❤️';
+    margin-left: 8px;
+    display: inline-block;
+    animation: beat 1s ease-in-out infinite;
+  }
+
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.25); }
   }
 
   .yes-btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 12px 28px rgba(214, 51, 108, 0.7);
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 14px 35px rgba(214, 51, 108, 0.85);
   }
 
   .no-btn {
     background: #e9ecef;
     color: #868e96;
     position: relative;
+    transition: all 0.4s ease;
   }
 
-  .no-btn:hover {
-    background: #dee2e6;
-  }
+  .no-btn:hover { background: #dee2e6; }
 
-  /* Celebration screen */
+  /* ===== CELEBRATION ===== */
   .celebration {
     display: none;
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+    background: linear-gradient(135deg, #ff4d6d, #ff9a9e, #fbc2eb, #ff4d6d);
+    background-size: 400% 400%;
+    animation: gradientMove 6s ease infinite;
     z-index: 100;
     flex-direction: column;
     align-items: center;
@@ -158,146 +299,290 @@
     text-align: center;
     color: white;
     padding: 20px;
-    animation: cardIn 0.8s ease-out;
+    overflow: hidden;
+  }
+
+  @keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
   }
 
   .celebration h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: white;
-    margin-bottom: 20px;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    margin-bottom: 25px;
+    text-shadow: 0 5px 20px rgba(0,0,0,0.35);
+    animation: cardIn 1s ease-out;
+  }
+
+  .celebration h1 .her-name {
+    -webkit-text-fill-color: white;
+    color: white;
+    background: none;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 1),
+                 0 5px 20px rgba(0,0,0,0.35);
   }
 
   .celebration p {
     font-size: 1.3rem;
-    max-width: 500px;
-    line-height: 1.6;
+    max-width: 550px;
+    line-height: 1.7;
+    animation: cardIn 1.3s ease-out;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.3);
   }
 
   .ring {
-    font-size: 5rem;
+    font-size: 6rem;
     animation: bounce 1s ease-in-out infinite;
     margin-bottom: 20px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
   }
 
   @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-20px); }
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-25px) scale(1.1); }
   }
 
+  .celebration .emoji-row {
+    font-size: 2.5rem;
+    letter-spacing: 15px;
+    margin-top: 25px;
+    animation: cardIn 1.6s ease-out;
+  }
+
+  /* ===== CONFETTI & FALLING LOVE ===== */
   .confetti {
     position: fixed;
-    width: 10px;
-    height: 10px;
     top: -10px;
     z-index: 101;
     animation: fall linear forwards;
+    pointer-events: none;
   }
 
   @keyframes fall {
     to { transform: translateY(110vh) rotate(720deg); }
   }
 
+  .loveFall {
+    position: fixed;
+    top: -60px;
+    font-size: 28px;
+    z-index: 101;
+    animation: fall linear forwards;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+  }
+
   @media (max-width: 500px) {
-    .photo-frame { width: 170px; height: 170px; }
+    .photo-wrap { width: 180px; height: 180px; }
+    .orbit { width: 220px; height: 220px; margin: -110px 0 0 -110px; }
     h1 { font-size: 1.6rem; }
     .question { font-size: 1.5rem; }
     .message { font-size: 0.95rem; }
+    .celebration h1 { font-size: 2rem; }
+    .celebration p { font-size: 1.05rem; }
+    .ring { font-size: 4.5rem; }
   }
 </style>
 </head>
 <body>
 
-  <!-- Floating hearts -->
-  <div id="hearts-container"></div>
-
-  <!-- Main card -->
+  <!-- ===== MAIN CARD ===== -->
   <div class="card" id="card">
-    <div class="photo-frame">
-      <!-- Replace 'mygirl.jpg' with your photo file name -->
-      <img src="mygirl.jpg" alt="My Love" onerror="this.src='https://via.placeholder.com/220?text=Her+Photo'">
+
+    <div class="photo-wrap">
+      <div class="orbit">
+        <span>❤️</span>
+        <span>💖</span>
+        <span>💕</span>
+        <span>💗</span>
+      </div>
+      <div class="photo-frame">
+        <!-- Replace 'mygirl.jpg' with your own photo -->
+        <img src="love.jpeg" alt="Anandi" onerror="this.src='https://via.placeholder.com/230?text=Anandi'">
+      </div>
     </div>
 
-    <h1>To My Dearest ❤️</h1>
+    <div class="divider">💖 💕 💖</div>
+
+    <h1>To My Dearest <span class="her-name">Anandi</span> 💗</h1>
 
     <p class="message">
-      From the moment I met you, my world changed forever. 
-      Every day with you is a beautiful adventure, and every moment apart 
-      feels like an eternity. You are my best friend, my confidant, 
-      and my greatest love.
+      <strong>Anandi</strong>, from the moment I met you, my world changed forever. 🌹<br>
+      Every day with you is a beautiful adventure, 💫<br>
+      and every moment apart feels like an eternity. ⏳<br>
+      You are my best friend, my confidant, 💞<br>
+      and my greatest love. ❤️
     </p>
 
-    <p class="question">Will You Marry Me? 💍</p>
+    <p class="question"><span class="her-name">Anandi</span>, Will You Marry Me? 💍</p>
 
     <div class="buttons">
-      <button class="yes-btn" onclick="sayYes()">Yes, I Will! 💕</button>
+      <button class="yes-btn" onclick="sayYes()">Yes, I Will!</button>
       <button class="no-btn" id="noBtn" onclick="moveNo()">No</button>
     </div>
+
+    <div class="divider" style="margin-top: 25px;">💐 🌹 💐</div>
   </div>
 
-  <!-- Celebration screen -->
+  <!-- ===== CELEBRATION ===== -->
   <div class="celebration" id="celebration">
     <div class="ring">💍</div>
-    <h1>She Said YES! 🎉</h1>
-    <p>You've made me the happiest person in the world. 
+    <h1><span class="her-name">Anandi</span> Said YES! 🎉</h1>
+    <p><strong>Anandi</strong>, you've made me the happiest person in the world. 💖<br>
        Here's to forever together, my love. ❤️</p>
+    <div class="emoji-row">💕 💗 💖 💘 💝</div>
   </div>
 
 <script>
-  // ---- Floating hearts ----
-  const heartsContainer = document.getElementById('hearts-container');
-  const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '🌸'];
+  /* ============================================
+     HER NAME — Anandi
+  ============================================ */
+  const HER_NAME = 'Anandi';
+
+  /* ============================================
+     FLOATING LOVE SYMBOLS
+  ============================================ */
+  const loveSymbols = [
+    '❤️', '💖', '💕', '💗', '💓', '💘', '💝', '💞', '💟',
+    '🌸', '🌹', '💐', '🌷', '💋', '😍', '🥰', '😘', '💌'
+  ];
 
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
-    heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    heart.textContent = loveSymbols[Math.floor(Math.random() * loveSymbols.length)];
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (Math.random() * 20 + 14) + 'px';
-    heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
-    heartsContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), 9000);
+    heart.style.fontSize = (Math.random() * 24 + 16) + 'px';
+    heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+    heart.style.animationDelay = (Math.random() * 2) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 12000);
   }
-  setInterval(createHeart, 350);
+  setInterval(createHeart, 250);
 
-  // ---- Playful "No" button that runs away ----
+  /* ============================================
+     FLOATING "ANANDI" NAMES
+  ============================================ */
+  function createNameFloat() {
+    const n = document.createElement('div');
+    n.classList.add('name-float');
+    n.textContent = HER_NAME;
+    n.style.left = Math.random() * 90 + 'vw';
+    n.style.fontSize = (Math.random() * 18 + 18) + 'px';
+    n.style.animationDuration = (Math.random() * 6 + 8) + 's';
+    document.body.appendChild(n);
+    setTimeout(() => n.remove(), 15000);
+  }
+  setInterval(createNameFloat, 3000); // every 3 seconds
+
+  /* ============================================
+     SPARKLE STARS
+  ============================================ */
+  const sparkleChars = ['✨', '⭐', '🌟', '💫'];
+  function createSparkle() {
+    const s = document.createElement('div');
+    s.classList.add('sparkle');
+    s.textContent = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = Math.random() * 100 + 'vh';
+    s.style.fontSize = (Math.random() * 16 + 10) + 'px';
+    s.style.animationDelay = (Math.random() * 2) + 's';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 4000);
+  }
+  setInterval(createSparkle, 500);
+
+  /* ============================================
+     PLAYFUL "NO" BUTTON
+  ============================================ */
   const noBtn = document.getElementById('noBtn');
-  const noTexts = ['No', 'Are you sure?', 'Really?', 'Think again!', 'Please?', 'Last chance...', '🥺', 'I\'ll be sad 😢'];
+  const noTexts = [
+    'No', 'Are you sure, ' + HER_NAME + '?', 'Really?', 'Think again!',
+    'Please, ' + HER_NAME + '? 🥺', 'Last chance...', 'I\'ll be sad 😢', '🥺',
+    'Don\'t do this 💔', 'Pretty please?', 'Say yes, ' + HER_NAME + '! 💕'
+  ];
   let noCount = 0;
 
   function moveNo() {
     noCount++;
     noBtn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
-    const x = Math.random() * 200 - 100;
-    const y = Math.random() * 100 - 50;
+    const x = Math.random() * 220 - 110;
+    const y = Math.random() * 120 - 60;
     noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    if (noCount > 3) noBtn.style.opacity = Math.max(0, 1 - noCount * 0.15);
+    if (noCount > 3) noBtn.style.opacity = Math.max(0.1, 1 - noCount * 0.12);
   }
 
-  // ---- Yes celebration + confetti ----
+  /* ============================================
+     YES — CELEBRATION!
+  ============================================ */
   function sayYes() {
     document.getElementById('card').style.display = 'none';
     document.getElementById('celebration').style.display = 'flex';
 
-    // Confetti burst
-    const colors = ['#ff4d6d', '#ffd6e0', '#ffb3c6', '#fff', '#ff9a9e', '#fecfef'];
-    for (let i = 0; i < 120; i++) {
+    /* Confetti burst */
+    const colors = ['#ff4d6d', '#ffd6e0', '#ffb3c6', '#fff', '#ff9a9e', '#fbc2eb', '#ffe066'];
+    for (let i = 0; i < 160; i++) {
       setTimeout(() => {
         const c = document.createElement('div');
         c.classList.add('confetti');
         c.style.left = Math.random() * 100 + 'vw';
         c.style.background = colors[Math.floor(Math.random() * colors.length)];
-        c.style.width = (Math.random() * 10 + 6) + 'px';
-        c.style.height = c.style.width;
+        const size = Math.random() * 12 + 6;
+        c.style.width = size + 'px';
+        c.style.height = size + 'px';
         c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-        c.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        c.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
         document.body.appendChild(c);
-        setTimeout(() => c.remove(), 4500);
-      }, i * 25);
+        setTimeout(() => c.remove(), 5000);
+      }, i * 20);
     }
 
-    // Extra hearts explosion
-    for (let i = 0; i < 60; i++) createHeart();
+    /* Falling love symbols */
+    for (let i = 0; i < 80; i++) {
+      setTimeout(() => {
+        const lf = document.createElement('div');
+        lf.classList.add('loveFall');
+        lf.textContent = loveSymbols[Math.floor(Math.random() * loveSymbols.length)];
+        lf.style.left = Math.random() * 100 + 'vw';
+        lf.style.fontSize = (Math.random() * 26 + 20) + 'px';
+        lf.style.animationDuration = (Math.random() * 2.5 + 2.5) + 's';
+        document.body.appendChild(lf);
+        setTimeout(() => lf.remove(), 5500);
+      }, i * 30);
+    }
+
+    /* Falling "Anandi" names */
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        const nf = document.createElement('div');
+        nf.classList.add('loveFall');
+        nf.textContent = HER_NAME;
+        nf.style.left = Math.random() * 100 + 'vw';
+        nf.style.fontSize = (Math.random() * 20 + 22) + 'px';
+        nf.style.fontFamily = 'Georgia, serif';
+        nf.style.fontStyle = 'italic';
+        nf.style.fontWeight = 'bold';
+        nf.style.color = 'white';
+        nf.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        document.body.appendChild(nf);
+        setTimeout(() => nf.remove(), 6000);
+      }, i * 80);
+    }
+
+    /* Extra hearts explosion */
+    for (let i = 0; i < 70; i++) createHeart();
+
+    /* Endless love rain while celebrating */
+    const celebrationRain = setInterval(() => {
+      if (document.getElementById('celebration').style.display !== 'flex') {
+        clearInterval(celebrationRain);
+        return;
+      }
+      createHeart();
+      createSparkle();
+      if (Math.random() > 0.7) createNameFloat();
+    }, 200);
   }
 </script>
 
